@@ -607,7 +607,9 @@ mod tests {
 
     #[test]
     fn summarizes() {
-        let summary = summary(&doc("Hello, world!\nfoo_bar 42"));
+        let mut document = doc("Hello, world!\nfoo_bar 42");
+        document.set_line_ending(crate::LineEnding::Lf);
+        let summary = summary(&document);
         assert_eq!(
             summary,
             Summary {
